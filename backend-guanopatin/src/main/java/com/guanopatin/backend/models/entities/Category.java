@@ -1,13 +1,16 @@
 package com.guanopatin.backend.models.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Table(name="Categories")
@@ -26,6 +29,9 @@ public class Category implements Serializable{
 	
 	@Column(name="description")
 	private String description;
+	
+	@OneToMany(mappedBy="category",fetch=FetchType.LAZY)
+	private List<Subject> subjects; 
 	
 	public Category() {
 		super();
@@ -58,5 +64,12 @@ public class Category implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public List<Subject> getSubjects() {
+		return subjects;
+	}
+	public void setSubjects(List<Subject> subjects) {
+		this.subjects = subjects;
+	}
+	
 	
 }

@@ -2,14 +2,21 @@ package com.guanopatin.backend.models.entities;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Table(name="Clubs")
 @Entity
@@ -25,10 +32,15 @@ public class Club implements Serializable {
 	private String name;
 	
 	@Column(name="start")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	private Calendar start;
 	
 	@Column(name="description")
 	private String description;
+	
+	@OneToMany(mappedBy="club",fetch=FetchType.LAZY)
+	private List<Subscription> subscriptions;
 	
 	public Club() {
 		super();
@@ -68,6 +80,12 @@ public class Club implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public List<Subscription> getSubscriptions() {
+		return subscriptions;
+	}
+	public void setSubscriptions(List<Subscription> subscriptions) {
+		this.subscriptions = subscriptions;
 	}
 	
 }
