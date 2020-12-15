@@ -40,6 +40,10 @@ public class Student extends Person implements Serializable {
 	@OneToMany(mappedBy="student",fetch=FetchType.LAZY)
 	private List<Subscription> subscription; 
 	
+	//Cardinalidad uno a varios
+		@OneToMany(mappedBy="student",fetch=FetchType.LAZY)
+		private List<Registration> registration; 
+	
 	public Student() {
 		super();
 	}
