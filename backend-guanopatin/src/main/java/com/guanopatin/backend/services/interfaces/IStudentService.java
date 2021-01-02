@@ -9,4 +9,9 @@ public interface IStudentService {
 	public Student findById(Long id); //retrieve
 	public void delete(Long id); //delete
 	public List<Student> findAll(); //list
+
+	/*** Custom method ***/
+	public List<Student> findBySex(String gender);
+	public Student findByLastName(String lastname);
+	public Student findByPlaceOfBirth(String place);
 }

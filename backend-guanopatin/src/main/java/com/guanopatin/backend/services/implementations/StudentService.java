@@ -51,4 +51,20 @@ public class StudentService implements IStudentService {
 		return (List<Student>) dao.findAll();
 	}
 
+	@Override
+	public Student findByLastName(String criteria) {
+		/** SQL: Select * from dbo.Students as S where s.last_name = criteria**/
+		return dao.findByLastName(criteria);
+	}
+
+	@Override
+	public List<Student> findBySex(String gender) {
+		return (List<Student>) dao.findBySex(gender);
+	}
+
+	@Override
+	public Student findByPlaceOfBirth(String place) {
+		return dao.findByPlaceOfBirth(place);
+	}
+
 }
